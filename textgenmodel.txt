@@ -1,0 +1,16 @@
+from transformers import pipeline
+
+# Load a text-generation model (e.g., GPT-2)
+generator = pipeline('text-generation', model='gpt2')
+
+def get_response(user_input):
+    # Generate a response based on user input
+    results = generator(user_input, max_length=50, num_return_sequences=1)
+    return results[0]['generated_text']
+
+# Example usage:
+if __name__ == "__main__":
+    while True:
+        user_input = input(">> ")
+        response = get_response(user_input)
+        print("JokerAI:", response)
